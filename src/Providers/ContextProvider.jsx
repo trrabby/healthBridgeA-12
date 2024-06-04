@@ -1,9 +1,11 @@
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, GithubAuthProvider, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { app } from '../firebase.config';
+
 import { useAxiosSecure } from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { app } from '../../firebase.config';
+
 
 export const ContextApi = createContext(null);
     
@@ -79,8 +81,8 @@ export const ContextProvider = ({ children }) => {
 
     const signOutfromLogin = async () => {
         toast.success('Signed Out Successfully')
-        const {data} = await axiosSecure.post('/logout')
-        console.log('cookie logout',data)
+        // const {data} = await axiosSecure.post('/logout')
+        // console.log('cookie logout',data)
         return signOut(auth)
     }
 
@@ -113,7 +115,6 @@ export const ContextProvider = ({ children }) => {
         }
 
     }
-
 
 
     const ContextValue = {
