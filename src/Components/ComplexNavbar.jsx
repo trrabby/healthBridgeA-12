@@ -39,6 +39,7 @@ import { FaList, FaUserCircle } from "react-icons/fa";
 import { MdDashboardCustomize } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 // profile menu component
 const profileMenuItems = [
@@ -290,7 +291,7 @@ export function ComplexNavbar() {
           }
           
           {
-            loading && <CgSpinnerTwoAlt className="animate-spin"/>
+            loading && <LoadingSpinner></LoadingSpinner>
           }
 
           {/* user Profile */}

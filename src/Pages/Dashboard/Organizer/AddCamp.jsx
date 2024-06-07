@@ -22,7 +22,10 @@ export const AddCamp = () => {
     // console.log(photoPreview)
 
     const onSubmit = async (formInfo) => {
+        delete formInfo.img
         const infoWithAddl = { ...formInfo, "thumbnail": photoPreview }
+        
+        console.log(infoWithAddl)
         
         try {
             const { data } = await axiosCommon.post('/camps', infoWithAddl)
@@ -30,6 +33,7 @@ export const AddCamp = () => {
                 toast.success('Blog Added successfully')
                 // navigate('/allBlogs');
                 reset();
+                setPhotoPreview(null)
             }
 
         }

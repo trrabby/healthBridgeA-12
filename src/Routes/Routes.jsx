@@ -13,6 +13,7 @@ import { PrivateRoute } from "../Providers/PraivateRoute";
 import { MyProfile } from "../Pages/Profile/MyProfile";
 import { OrgProfile } from "../Pages/Dashboard/Organizer/OrgProfile";
 import { AddCamp } from "../Pages/Dashboard/Organizer/AddCamp";
+import { CampDetails } from "../Pages/AvailableCamp/CampDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/availableCamps',
         element: <AvailableCamp></AvailableCamp>
+      },
+      {
+        path: '/campDetails/:id',
+        element: <PrivateRoute><CampDetails></CampDetails></PrivateRoute>
       },
       {
         path: '/joinUs',

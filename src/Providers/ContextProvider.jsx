@@ -101,7 +101,7 @@ export const ContextProvider = ({ children }) => {
 
         if (shouldDelete.isConfirmed) {
 
-            const { data } = await axiosSecure.delete(`/blogs/${id}`)
+            const { data } = await axiosSecure.delete(`/camps/${id}`)
 
             if (data.deletedCount > 0) {
                 toast.success('Deleted Successfully')
