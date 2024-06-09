@@ -11,7 +11,6 @@ import { Register } from "../Pages/Register/Register";
 import { DashBoard } from "../Pages/Dashboard/DashBoard";
 import { PrivateRoute } from "../Providers/PraivateRoute";
 import { MyProfile } from "../Pages/Profile/MyProfile";
-import { OrgProfile } from "../Pages/Dashboard/Organizer/OrgProfile";
 import { AddCamp } from "../Pages/Dashboard/Organizer/AddCamp";
 import { CampDetails } from "../Pages/AvailableCamp/CampDetails";
 
@@ -52,7 +51,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: 'organizerProfile',
-            element: <OrgProfile></OrgProfile>
+            element: <MyProfile></MyProfile>
           },
           {
             path: 'addACamp',

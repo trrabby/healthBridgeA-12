@@ -17,52 +17,39 @@ export const Camp = ({ camp, refetch }) => {
     const { _id, title, campFee, startDate, endDate, startTime, endTime, loc, healtCareProf, participantCount, email, user_name, description, thumbnail } = camp
 
 
-    const handleDelete2 = async (id) => {
-        const shouldDelete = await Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        })
-        // console.log(shouldDelete)
+    // const handleDelete2 = async (id) => {
+    //     const shouldDelete = await Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, delete it!"
+    //     })
+    //     // console.log(shouldDelete)
 
-        if (shouldDelete.isConfirmed) {
+    //     if (shouldDelete.isConfirmed) {
 
-            const { data } = await axiosCommon.delete(`/camps/${id}`)
+    //         const { data } = await axiosCommon.delete(`/camps/${id}`)
 
-            if (data.deletedCount > 0) {
-                toast.success('Deleted Successfully')
-                refetch()
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-            // console.log(data)
-        }
+    //         if (data.deletedCount > 0) {
+    //             toast.success('Deleted Successfully')
+    //             refetch()
+    //             Swal.fire({
+    //                 title: "Deleted!",
+    //                 text: "Your file has been deleted.",
+    //                 icon: "success"
+    //             });
+    //         }
+    //         // console.log(data)
+    //     }
 
 
 
-    }
-
-    // console.log(_id)
-
-    // const { data: regCamps = [] } = useQuery({
-    //     queryKey: ['regCapLength'],
-    //     queryFn: () => regCapLength(),
-    // })
-    // console.log(regCamps)
-    
-
-    // const regCapLength = async () => {
-    //     const { data } = await axiosSecure(`/regCamps/${_id}`)
-    //     return data
     // }
 
+    
     return (
         <div data-aos="fade-down" data-aos-duration="1000">
             <article className="flex flex-col md:flex-row bg-white transition hover:shadow-xl cursor-text">
@@ -111,9 +98,9 @@ export const Camp = ({ camp, refetch }) => {
                             Details
                         </Link>
 
-                        <button onClick={() => handleDelete2(_id)}
+                        {/* <button onClick={() => handleDelete2(_id)}
 
-                            className="bg-accent px-5 py-3 text-center text-xs font-bold uppercase text-white transition hover:bg-red-500 hover:text-black duration-700 flex items-center gap-2"><MdDeleteOutline />Remove</button>
+                            className="bg-accent px-5 py-3 text-center text-xs font-bold uppercase text-white transition hover:bg-red-500 hover:text-black duration-700 flex items-center gap-2"><MdDeleteOutline />Remove</button> */}
 
                     </div>
                 </div>

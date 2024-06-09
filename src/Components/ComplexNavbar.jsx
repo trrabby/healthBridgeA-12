@@ -258,7 +258,7 @@ export function ComplexNavbar() {
         setUser(user)
         // setLoading(!null)
       }).catch((error) => {
-        console.log(error)
+        // console.log(error)
       });
   }
 

@@ -25,7 +25,7 @@ export const AddCamp = () => {
         delete formInfo.img
         const infoWithAddl = { ...formInfo, "thumbnail": photoPreview }
         
-        console.log(infoWithAddl)
+        // console.log(infoWithAddl)
         
         try {
             const { data } = await axiosCommon.post('/camps', infoWithAddl)
@@ -43,8 +43,8 @@ export const AddCamp = () => {
 
     }
 
-    const handlePhotoPreview = async (e) => {
-
+     const handlePhotoPreview = async (e) => {
+        console.log(e.target.files[0])
         const formData = new FormData();
         formData.append('image', e.target.files[0])
 

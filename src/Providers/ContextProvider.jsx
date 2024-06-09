@@ -3,21 +3,26 @@ import React, { createContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 import { useAxiosSecure } from '../Hooks/useAxiosSecure';
+
 import Swal from 'sweetalert2';
 import { app } from '../../firebase.config';
+import { useAxiosCommon } from '../Hooks/useAxiosCommon';
 
 
 export const ContextApi = createContext(null);
-    
+
 export const ContextProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
-
     const [err, setErr] = useState(null)
     const [user, setUser] = useState(null);
 
+    // console.log(user)
+
 
     const axiosSecure = useAxiosSecure()
+    const axiosCommon = useAxiosCommon()
+
     const auth = getAuth(app);
 
     const registerWithEmail = (email, password) => {
@@ -47,6 +52,28 @@ export const ContextProvider = ({ children }) => {
 
     }
 
+    const handleUserToDB = async () => {
+
+        const { data: isPreviousUser } = await axiosSecure(`/user/${user?.email}`)
+        // console.log(isPreviousUser)
+
+        if (user && !isPreviousUser && user.displayName) {
+
+            const userInfo = {
+                user_name: user?.displayName,
+                user_email: user?.email,
+                photo: user?.photoURL,
+                role: "participant",
+                regTime: user?.metadata.creationTime,
+            }
+
+            const { data } = await axiosCommon.post("/user", userInfo)
+            // console.log(data)
+        }
+
+
+    }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -56,11 +83,13 @@ export const ContextProvider = ({ children }) => {
             // if user exist then provide a token
             if (currentUser) {
                 const loggedPerson = { email: currentUser.email }
-                try{
+
+                try {
+                    handleUserToDB()
                     axiosSecure.post("/jwt", loggedPerson)
-                    .then(res=>console.log('token response', res.data))
+                        .then(res => console.log('token response', res.data))
                 }
-                
+
                 catch (err) {
                     console.log(err)
                 }
