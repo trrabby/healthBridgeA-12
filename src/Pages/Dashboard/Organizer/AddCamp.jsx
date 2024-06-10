@@ -150,7 +150,7 @@ export const AddCamp = () => {
                                 <label className="input input-bordered flex items-center gap-2 animate__animated animate__flipInX animate__slow 1s">
                                     <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 42 42" id="pen"><path fill="#231f20" d="M37.28 4.72a5.52 5.52 0 0 0-7.78 0L5.73 28.49a1.56 1.56 0 0 0-.42.84L4.3 36a1.5 1.5 0 0 0 1.48 1.73h.23l6.66-1a1.56 1.56 0 0 0 .84-.42L37.28 12.5a5.52 5.52 0 0 0 0-7.78ZM11.74 33.8l-4.17.63.63-4.17 19.52-19.51 3.53 3.53Zm23.42-23.42-2.49 2.49-3.54-3.54 2.49-2.49a2.5 2.5 0 1 1 3.54 3.54Z"></path></svg>
                                     <span className='text-nowrap'>Participant Counts</span>
-                                    <input defaultValue={0} className='text-black w-full' type="number" placeholder='Participant Count' name='participantCount' {...register("participantCount", { required: true })} />
+                                    <input value={0} className='text-black w-full' type="number" placeholder='Participant Count' name='participantCount' {...register("participantCount", { required: true })} />
                                 </label>
                                 {errors.participantCount && <span className='text-red-600 text-xs'>This field is required</span>}
 
@@ -171,13 +171,13 @@ export const AddCamp = () => {
 
                                 <label className="input input-bordered flex items-center gap-2 animate__animated animate__flipInX animate__slow 1s">
                                     <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 42 42" id="pen"><path fill="#231f20" d="M37.28 4.72a5.52 5.52 0 0 0-7.78 0L5.73 28.49a1.56 1.56 0 0 0-.42.84L4.3 36a1.5 1.5 0 0 0 1.48 1.73h.23l6.66-1a1.56 1.56 0 0 0 .84-.42L37.28 12.5a5.52 5.52 0 0 0 0-7.78ZM11.74 33.8l-4.17.63.63-4.17 19.52-19.51 3.53 3.53Zm23.42-23.42-2.49 2.49-3.54-3.54 2.49-2.49a2.5 2.5 0 1 1 3.54 3.54Z"></path></svg>
-                                    <input className='text-black w-full' type="email" value={user.email} placeholder='Email' name='email' {...register("email", { required: true })} />
+                                    <input className='text-black w-full' type="email" value={user?.email} placeholder='Email' name='email' {...register("email", { required: true })} />
                                 </label>
                                 {errors.email && <span className='text-red-600 text-xs'>This field is required</span>}
 
                                 <label className="input input-bordered flex items-center gap-2 animate__animated animate__flipInX animate__slow 1s">
                                     <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 42 42" id="pen"><path fill="#231f20" d="M37.28 4.72a5.52 5.52 0 0 0-7.78 0L5.73 28.49a1.56 1.56 0 0 0-.42.84L4.3 36a1.5 1.5 0 0 0 1.48 1.73h.23l6.66-1a1.56 1.56 0 0 0 .84-.42L37.28 12.5a5.52 5.52 0 0 0 0-7.78ZM11.74 33.8l-4.17.63.63-4.17 19.52-19.51 3.53 3.53Zm23.42-23.42-2.49 2.49-3.54-3.54 2.49-2.49a2.5 2.5 0 1 1 3.54 3.54Z"></path></svg>
-                                    <input className='text-black w-full' type="text" defaultValue={user.displayName} value={user.displayName} placeholder='User Name' name='user_name' {...register("user_name", { required: true })} />
+                                    <input className='text-black w-full' type="text" value={user?.displayName} placeholder='User Name' name='user_name' {...register("user_name", { required: true })} />
                                 </label>
                                 {errors.user_name && <span className='text-red-600 text-xs'>This field is required</span>}
 

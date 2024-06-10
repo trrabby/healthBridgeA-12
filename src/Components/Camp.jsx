@@ -16,40 +16,6 @@ export const Camp = ({ camp, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const { _id, title, campFee, startDate, endDate, startTime, endTime, loc, healtCareProf, participantCount, email, user_name, description, thumbnail } = camp
 
-
-    // const handleDelete2 = async (id) => {
-    //     const shouldDelete = await Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!"
-    //     })
-    //     // console.log(shouldDelete)
-
-    //     if (shouldDelete.isConfirmed) {
-
-    //         const { data } = await axiosCommon.delete(`/camps/${id}`)
-
-    //         if (data.deletedCount > 0) {
-    //             toast.success('Deleted Successfully')
-    //             refetch()
-    //             Swal.fire({
-    //                 title: "Deleted!",
-    //                 text: "Your file has been deleted.",
-    //                 icon: "success"
-    //             });
-    //         }
-    //         // console.log(data)
-    //     }
-
-
-
-    // }
-
-    
     return (
         <div data-aos="fade-down" data-aos-duration="1000">
             <article className="flex flex-col md:flex-row bg-white transition hover:shadow-xl cursor-text">
@@ -98,10 +64,7 @@ export const Camp = ({ camp, refetch }) => {
                             Details
                         </Link>
 
-                        {/* <button onClick={() => handleDelete2(_id)}
-
-                            className="bg-accent px-5 py-3 text-center text-xs font-bold uppercase text-white transition hover:bg-red-500 hover:text-black duration-700 flex items-center gap-2"><MdDeleteOutline />Remove</button> */}
-
+                        
                     </div>
                 </div>
             </article>

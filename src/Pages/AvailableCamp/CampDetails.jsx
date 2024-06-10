@@ -89,10 +89,6 @@ export const CampDetails = () => {
 
                         <Button onClick={() => setIsJoinCampModalOpen(true)} className='btn btn-outline text-white hover:bg-accent bg-third font-bold hover:scale-105 hover:duration-300 flex items-center gap-2 justify-center'><FaTentArrowDownToLine /> Join Camp</Button>
 
-                        {/* <Link to={`/update/${_id}`}>
-                            <Button className='btn btn-outline text-white hover:bg-accent bg-third font-bold hover:scale-105 hover:duration-300 flex items-center gap-2 justify-center'> <GrDocumentUpdate />Update</Button>
-                        </Link> */}
-
                         <JoinCampModa
                             isOpen={isJoinCampModalOpen}
                             setIsOpen={setIsJoinCampModalOpen}

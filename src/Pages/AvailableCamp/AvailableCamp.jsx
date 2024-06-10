@@ -85,8 +85,8 @@ export const AvailableCamp = () => {
         para={'Our medical camps deliver essential healthcare, offering check-ups and health education to enhance community wellness and preventive care.'}
       ></SectionHead>
 
-      <div className='flex items-center justify-center bg-accent p-5 rounded-lg gap-2'>
-        <input onKeyUp={handleTextSearch} type="text" name="searchField" className=' p-2 px-4 w-3/12 rounded-lg' placeholder='Search Your Desired Camp Here' />
+      <div className='flex items-center justify-center  p-5 rounded-lg gap-2'>
+        <input onKeyUp={handleTextSearch} type="text" name="searchField" className=' border-accent border p-2 px-4 w-3/12 rounded-lg' placeholder='Search Your Desired Camp Here' />
 
         <select name="selectionTab" onChange={handleFrontSel} className='w-3/12 h-full bg-none outline-none text-sm lg:text-base p-2 rounded-lg bg-accent border border-third text-white hover:bg-third duration-500 hover:cursor-pointer text-center' placeholder="Select">
           <option value="" disabled selected>Sort By</option>

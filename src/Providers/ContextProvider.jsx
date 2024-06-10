@@ -64,7 +64,7 @@ export const ContextProvider = ({ children }) => {
                 user_email: user?.email,
                 photo: user?.photoURL,
                 role: "participant",
-                regTime: user?.metadata.creationTime,
+                regTime: user?.metadata?.creationTime,
             }
 
             const { data } = await axiosCommon.post("/user", userInfo)

@@ -263,7 +263,7 @@ export function ComplexNavbar() {
   }
 
   return (
-    <Navbar className="mx-auto w-full p-2 lg:pl-6 sticky top-0">
+    <Navbar className="mx-auto w-full p-2 lg:pl-6 sticky top-0 z-50">
       <div className="relative mx-auto w-full flex items-center justify-between text-blue-gray-900">
         <Link
           to={'/'}

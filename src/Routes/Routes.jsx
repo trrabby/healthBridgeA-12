@@ -13,6 +13,10 @@ import { PrivateRoute } from "../Providers/PraivateRoute";
 import { MyProfile } from "../Pages/Profile/MyProfile";
 import { AddCamp } from "../Pages/Dashboard/Organizer/AddCamp";
 import { CampDetails } from "../Pages/AvailableCamp/CampDetails";
+import { ManageCamp } from "../Pages/Dashboard/Organizer/ManageCamp";
+import { OrganizerRoute } from "../Providers/OrganizerRoute";
+import { MostRegCamps } from "../Pages/Dashboard/Organizer/MostRegCamps";
+import { UpdateCamp } from "../Pages/Dashboard/UpdateCamp";
 
 const router = createBrowserRouter([
   {
@@ -49,14 +53,29 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
         children: [
-          {
+          
+          { 
             path: 'organizerProfile',
             element: <MyProfile></MyProfile>
           },
           {
             path: 'addACamp',
-            element: <AddCamp></AddCamp>
-          }
+            element: <OrganizerRoute><AddCamp></AddCamp></OrganizerRoute>
+          },
+          {
+            path: 'manageCamp',
+            element:<OrganizerRoute><ManageCamp></ManageCamp></OrganizerRoute>
+          },
+          {
+            path: 'mngRegCamp',
+            element:<OrganizerRoute><MostRegCamps></MostRegCamps></OrganizerRoute>
+          },
+          {
+            path: 'update/:id',
+            element:<OrganizerRoute><UpdateCamp></UpdateCamp></OrganizerRoute>
+          },
+
+
         ]
       }
     ]
