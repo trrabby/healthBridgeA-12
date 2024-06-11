@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form, useNavigate, useParams } from 'react-router-dom'
 import { useAxiosSecure } from '../../Hooks/useAxiosSecure'
 import { useQuery } from '@tanstack/react-query'
@@ -22,42 +22,39 @@ export const UpdateCamp = () => {
     const axiosSecure = useAxiosSecure()
     const axiosCommon = useAxiosCommon()
 
-    const { id } = useParams()
-    console.log(id)
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
-    const { data: campUpdate, isLoading, isError, error, refetch } = useQuery({
+    const { id } = useParams()
+    // console.log(id)
+    // useEffect(()=>{
+    //     reset()
+    // },[])
+
+    const { data: campUpdate = [], isLoading, isError, error, refetch } = useQuery({
         queryKey: ['campUpdate'],
         queryFn: () => campData(),
 
     })
-    console.log(campUpdate)
+    // console.log(campUpdate)
 
     const campData = async () => {
-        try {
-            const { data } = await axiosSecure(`/camps/${id}`);
-            return data
-        }
-        catch (err) {
-            console.log(err)
-        }
+        const { data } = await axiosSecure(`/camps/${id}`);
+        reset()
+        return data
     }
 
 
     const { title, campFee, startDate, endDate, startTime, endTime, loc, healtCareProf, participantCount, email, user_name, description, thumbnail } = campUpdate;
 
-
-
-    if (loading) {
-        <LoadingSpinnerCircle></LoadingSpinnerCircle>
-    }
-    // form upgradation
-
     const onSubmit = async (formInfo) => {
         setLoading(true)
-        if (formInfo.img[0]) {
-            formInfo.img = await imgUpload(formInfo?.img[0])
+        if (formInfo.thumbnail[0]) {
+            formInfo.thumbnail = await imgUpload(formInfo.thumbnail[0])
+        }
+
+        if (!formInfo.thumbnail[0]) {
+            delete (formInfo.thumbnail)
         }
 
         console.log(formInfo)
@@ -67,10 +64,11 @@ export const UpdateCamp = () => {
 
             if (data.modifiedCount > 0) {
                 toast.success('Item Updated successfully')
-                navigate(`/campDetails/${id}`);
+                navigate(`/dashboard/manageCamp`);
                 setPhotoPreview(null);
                 setLoading(false)
             }
+
             else if (data.matchedCount > 0) {
                 toast.error("You didn't change anything")
                 setLoading(false)
@@ -84,6 +82,7 @@ export const UpdateCamp = () => {
 
     const handlePhotoPreview = async (e) => {
         // console.log(e.target.files[0])
+        setLoading(true)
         const formData = new FormData();
         formData.append('image', e.target.files[0])
 
@@ -96,6 +95,7 @@ export const UpdateCamp = () => {
             const photoPreview = data.data.display_url
             // console.log(photoPreview)
             setPhotoPreview(photoPreview)
+            setLoading(false)
         }
         catch (err) {
             console.log(err)
@@ -111,11 +111,13 @@ export const UpdateCamp = () => {
 
                     <div className='lg:w-11/12 w-full mx-auto flex gap-2 lg:flex-row-reverse items-start justify-center  text-black  p-5  rounded-xl space-y-2 font-medium md:my-5'>
 
-                        
+
                         {
                             photoPreview ? <div className={`w-6/12 lg:flex flex-col hidden`}>
                                 <p className='w-full text-black pb-5'>
-                                    <span className='underline rounded-lg p-3'>Image Preview </span> </p>
+                                    <span className='underline rounded-lg p-3'>
+                                        {`${loading ? "Please Wait" : "Image Preview"}`} 
+                                        </span> </p>
                                 <img className='rounded-lg' src={photoPreview} alt="" />
                             </div>
 
@@ -145,8 +147,8 @@ export const UpdateCamp = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' enableBackground="new 0 0 24 24" viewBox="0 0 24 24" id="image"><path d="M13.5,6C12.7,6,12,6.7,12,7.5S12.7,9,13.5,9S15,8.3,15,7.5S14.3,6,13.5,6z M19,2H5C3.3,2,2,3.3,2,5v14c0,1.7,1.3,3,3,3h14
                     c1.7,0,3-1.3,3-3V5C22,3.3,20.7,2,19,2z M20,13.9L18.1,12c-1.2-1.1-3.1-1.1-4.2,0L13,12.9L10.1,10c-1.2-1.1-3.1-1.1-4.2,0L4,11.9V5
                     c0-0.6,0.4-1,1-1h14c0.6,0,1,0.4,1,1V13.9z"></path></svg>
-                                        <input defaultValue={thumbnail} className='text-black w-full' type="file" name='img' placeholder="Thumbnail Image"
-                                            {...register("img", { required: false })} />
+                                        <input className='text-black w-full' type="file" name='thumbnail' placeholder="Thumbnail Image"
+                                            {...register("thumbnail", { required: false })} />
                                     </form>
                                     {errors.img && <span className='text-red-600 text-xs'>This field is required</span>}
 
