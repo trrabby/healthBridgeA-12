@@ -15,8 +15,8 @@ import { AddCamp } from "../Pages/Dashboard/Organizer/AddCamp";
 import { CampDetails } from "../Pages/AvailableCamp/CampDetails";
 import { ManageCamp } from "../Pages/Dashboard/Organizer/ManageCamp";
 import { OrganizerRoute } from "../Providers/OrganizerRoute";
-import { MostRegCamps } from "../Pages/Dashboard/Organizer/MostRegCamps";
-import { UpdateCamp } from "../Pages/Dashboard/UpdateCamp";
+import { UpdateCamp } from "../Pages/Dashboard/Organizer/UpdateCamp";
+import { MngRegisteredCamp } from "../Pages/Dashboard/Organizer/MngRegisteredCamp";
 
 const router = createBrowserRouter([
   {
@@ -67,12 +67,12 @@ const router = createBrowserRouter([
             element:<OrganizerRoute><ManageCamp></ManageCamp></OrganizerRoute>
           },
           {
-            path: 'mngRegCamp',
-            element:<OrganizerRoute><MostRegCamps></MostRegCamps></OrganizerRoute>
-          },
-          {
             path: 'update/:id',
             element:<OrganizerRoute><UpdateCamp></UpdateCamp></OrganizerRoute>
+          },
+          {
+            path: 'mngRegCamp',
+            element:<OrganizerRoute><MngRegisteredCamp></MngRegisteredCamp></OrganizerRoute>
           },
 
 

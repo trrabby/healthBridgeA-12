@@ -9,10 +9,11 @@ import { ContextApi } from '../../../Providers/ContextProvider'
 import '../Organizer/CSS/addCamp.css'
 import { Button } from '@material-tailwind/react'
 import axios from 'axios'
+import { LoadingSpinnerCircle } from '../../../Components/LoadingSpinnerCircle'
 
 
 export const AddCamp = () => {
-    const { user } = useContext(ContextApi)
+    const { user, loading, setLoading } = useContext(ContextApi)
     const navigate = useNavigate()
     const axiosCommon = useAxiosCommon()
 
@@ -23,15 +24,19 @@ export const AddCamp = () => {
 
     const onSubmit = async (formInfo) => {
         delete formInfo.img
+
+        if (loading) {
+            return <LoadingSpinnerCircle></LoadingSpinnerCircle>
+        }
+
         const infoWithAddl = { ...formInfo, "thumbnail": photoPreview }
-        
         // console.log(infoWithAddl)
-        
+
         try {
             const { data } = await axiosCommon.post('/camps', infoWithAddl)
             if (data.insertedId) {
-                toast.success('Blog Added successfully')
-                // navigate('/allBlogs');
+                toast.success('Camp Added successfully')
+                navigate('/availableCamps');
                 reset();
                 setPhotoPreview(null)
             }
@@ -43,8 +48,9 @@ export const AddCamp = () => {
 
     }
 
-     const handlePhotoPreview = async (e) => {
-        console.log(e.target.files[0])
+    const handlePhotoPreview = async (e) => {
+        // console.log(e.target.files[0])
+        setLoading(true)
         const formData = new FormData();
         formData.append('image', e.target.files[0])
 
@@ -52,14 +58,16 @@ export const AddCamp = () => {
 
         try {
             // photo upload to imgbb
-            const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_aip_imgbb}`, formData)
 
+            const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_aip_imgbb}`, formData)
             const photoPreview = data.data.display_url
             // console.log(photoPreview)
             setPhotoPreview(photoPreview)
+            setLoading(false)
         }
         catch (err) {
             console.log(err)
+            setLoading(false)
         }
     }
 
@@ -74,13 +82,15 @@ export const AddCamp = () => {
 
                     {
                         !photoPreview && <div className="w-6/12 bg-center bg-cover  bg-[url('https://i.ibb.co/vw4xsDM/design-application-flat-character-illustration-203633-2106.jpg')] lg:flex hidden">
-                            <p className='w-full lg:h-96 text-white'> <span className='bg-accent  rounded-lg'></span> </p>
+                            <p className='w-full lg:h-96 text-white'> <span className='bg-accent  rounded-lg'>
+                                {loading && <p>Please Wait</p>}
+                            </span></p>
                         </div>
                     }
                     {
                         photoPreview && <div className={`w-6/12 lg:flex flex-col hidden`}>
-                            <p className='w-full text-black pb-5'> 
-                            <span className='underline rounded-lg p-3'>Image Preview </span> </p>
+                            <p className='w-full text-black pb-5'>
+                                <span className='underline rounded-lg p-3'>Image Preview </span> </p>
                             <img className='rounded-lg' src={photoPreview} alt="" />
                         </div>
                     }

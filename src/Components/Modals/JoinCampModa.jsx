@@ -72,6 +72,8 @@ const JoinCampModa = ({ setIsOpen, isOpen, camp, refetch}) => {
             "nameOfParticipant": user.displayName,
             "emailOfParticipant": user.email,
             "regTime": new Date(),
+            "payStat": "Unpaid",
+            "payConStat": "Pending",
             ...modalData,
 
         }

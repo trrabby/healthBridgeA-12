@@ -1,8 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { useAxiosCommon } from './useAxiosCommon'
-import { LoadingSpinnerCircle } from '../Components/LoadingSpinnerCircle'
-
-
 
 export const useAllCamps = () => {
 
@@ -18,12 +15,5 @@ export const useAllCamps = () => {
     return data
   }
 
-  // if (isError) {
-  //   console.log(error)
-  // }
-
-  // if (isLoading) {
-  //   return <LoadingSpinnerCircle></LoadingSpinnerCircle>;
-  // }
   return {camps, isLoading, isError, error, refetch}
 }

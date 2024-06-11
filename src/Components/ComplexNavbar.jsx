@@ -43,6 +43,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 
 // profile menu component
 const profileMenuItems = [
+
   {
     label: "My Profile",
     icon: UserCircleIcon,
@@ -55,12 +56,10 @@ const profileMenuItems = [
   },
 ];
 
-function ProfileMenu({ handleSignOut }) {
+function ProfileMenu({ handleSignOut, user }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
-
-  const { user } = useContext(ContextApi)
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -79,12 +78,14 @@ function ProfileMenu({ handleSignOut }) {
 
           <ChevronDownIcon
             strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
-              }`}
+            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180 duration-500" : ""}`}
           />
         </div>
       </MenuHandler>
       <MenuList className="p-1">
+
+        {user && <p className="p-2">{user.displayName}</p>}
+
         {profileMenuItems.map(({ label, icon, address }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
@@ -106,7 +107,7 @@ function ProfileMenu({ handleSignOut }) {
                   as="span"
                   variant="small"
                   className="font-normal"
-                  
+
                 >
                   {label}
                 </Typography>
@@ -119,8 +120,9 @@ function ProfileMenu({ handleSignOut }) {
         })}
 
         {user && <Link onClick={handleSignOut} className="flex gap-2 items-center justify-center p-2 text-red-500 hover:bg-accent hover:text-white" size="sm" variant="text">
-        <TbLogout2 /> Log out
+          <TbLogout2 /> Log out
         </Link>}
+
       </MenuList>
     </Menu>
   );
@@ -287,9 +289,8 @@ export function ComplexNavbar() {
         <div className="flex items-center justify-center">
           {
             !user && <NavLink className={({ isActive }) => isActive ? 'text-fourth font-extrabold p-2' : 'hover:text-fourth p-2 font-extrabold'} to={'/joinUs'}>Join Us</NavLink>
-
           }
-          
+
           {
             loading && <LoadingSpinner></LoadingSpinner>
           }
@@ -298,6 +299,7 @@ export function ComplexNavbar() {
           <ProfileMenu
             key={"profile"}
             handleSignOut={handleSignOut}
+            user={user}
           />
         </div>
 

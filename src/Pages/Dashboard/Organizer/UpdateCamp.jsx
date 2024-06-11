@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, useNavigate, useParams } from 'react-router-dom'
-import { useAxiosSecure } from '../../Hooks/useAxiosSecure'
+import { useAxiosSecure } from '../../../Hooks/useAxiosSecure'
 import { useQuery } from '@tanstack/react-query'
-import { SectionHead } from '../../Components/SectionHead'
-import { useAxiosCommon } from '../../Hooks/useAxiosCommon'
+import { SectionHead } from '../../../Components/SectionHead'
+import { useAxiosCommon } from '../../../Hooks/useAxiosCommon'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { ContextApi } from '../../Providers/ContextProvider'
-import { LoadingSpinnerCircle } from '../../Components/LoadingSpinnerCircle'
+import { ContextApi } from '../../../Providers/ContextProvider'
+import { LoadingSpinnerCircle } from '../../../Components/LoadingSpinnerCircle'
 import { Button } from '@material-tailwind/react'
-import { imgUpload } from '../../Components/utilities/handlePhoto'
+import { imgUpload } from '../../../Components/utilities/handlePhoto'
 import toast from 'react-hot-toast'
-import { LoadingSpinner } from '../../Components/LoadingSpinner'
+import { LoadingSpinner } from '../../../Components/LoadingSpinner'
 
 export const UpdateCamp = () => {
 
@@ -57,7 +57,7 @@ export const UpdateCamp = () => {
             delete (formInfo.thumbnail)
         }
 
-        console.log(formInfo)
+        // console.log(formInfo)
 
         try {
             const { data } = await axiosSecure.patch(`/campss/${id}`, formInfo)

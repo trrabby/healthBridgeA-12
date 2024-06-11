@@ -9,42 +9,22 @@ import { GrDocumentUpdate } from 'react-icons/gr'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-tailwind/react'
 import toast from 'react-hot-toast'
+import { handleDelete } from '../../../Components/utilities/handleDelete'
 
 export const ManageCamp = () => {
-  const { camps, isLoading, isError, error, refetch } = useAllCamps()
+  const { camps,refetch } = useAllCamps()
   // console.log(camps)
-  const axiosCommon = useAxiosCommon()
 
-  const handleDelete2 = async (id) => {
-    const shouldDelete = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    })
-    // console.log(shouldDelete)
-
-    if (shouldDelete.isConfirmed) {
-
-      const { data } = await axiosCommon.delete(`/camps/${id}`)
-
-      if (data.deletedCount > 0) {
-        toast.success('Deleted Successfully')
-        refetch()
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
+const deleteHandler = async (idData) => {
+    try {
+      await handleDelete(idData , refetch)
+    }
+    catch (err) {
+      console.log(err)
     }
 
-
-
   }
+
   return (
     <div>
       <Helmet>
@@ -82,7 +62,7 @@ export const ManageCamp = () => {
                   <td className='flex gap-3 items-center justify-center'><Link to={`/dashboard/update/${item._id}`}>
                     <Button className='btn btn-outline text-white hover:bg-accent bg-third font-bold hover:scale-105 hover:duration-300 flex items-center gap-2 justify-center p-2'> <GrDocumentUpdate /></Button>
                   </Link>
-                    <button onClick={() => handleDelete2(item._id)}
+                    <button onClick={() => deleteHandler(`/camps/${item._id}`)}
                       className="bg-accent p-2 text-center text-xs font-bold uppercase text-white transition hover:bg-red-500 hover:text-black duration-700 flex items-center gap-2"><MdDeleteOutline /></button>
                   </td>
 
