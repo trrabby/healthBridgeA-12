@@ -53,7 +53,7 @@ export const MngRegisteredCamp = () => {
                   <td>{item?.payStat}</td>
                   <td><Button className={` p-1 px-3 ${item?.payConStat === "Pending"?"bg-accent border hover:bg-fourth  text-white" : "bg-none"} rounded-lg  duration-300`}>{item?.payConStat}</Button></td>
                   <td>{item?.payStat === "Paid" && item?.payConStat === "Confirmed" ? 
-                  <button disabled className='p-1 cursor-not-allowed'><TiTick className='text-green-600' /></button> : <button onClick={()=>deleteHandler(`/regCamps/${item._id}`)} className='border p-1 hover:bg-red-600 hover:text-white rounded-lg duration-700'><RxCross2 /></button>
+                  <button className='p-1 disabled cursor-not-allowed'><TiTick className='text-green-600' /></button> : <button onClick={()=>deleteHandler(`/regCamps/${item._id}`)} className='border p-1 hover:bg-red-600 hover:text-white rounded-lg duration-700'><RxCross2 /></button>
                     }</td>
                   
                 </tr>

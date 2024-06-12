@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
-import { useAxiosCommon } from './useAxiosCommon'
+import { useAxiosSecure } from './useAxiosSecure'
 
 export const useAllRegCamps = () => {
 
-  const axiosCommon = useAxiosCommon()
+  const axiosSecure = useAxiosSecure()
 
   const { data: regCamps = [], isLoading, isError, error, refetch } = useQuery({
     queryKey: ['regCamps'],
@@ -11,7 +11,7 @@ export const useAllRegCamps = () => {
   })
 
   const regCampsData = async () => {
-    const { data } = await axiosCommon('/regCamps')
+    const { data } = await axiosSecure('/regCamps')
     return data
   }
 

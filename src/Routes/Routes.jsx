@@ -17,6 +17,8 @@ import { ManageCamp } from "../Pages/Dashboard/Organizer/ManageCamp";
 import { OrganizerRoute } from "../Providers/OrganizerRoute";
 import { UpdateCamp } from "../Pages/Dashboard/Organizer/UpdateCamp";
 import { MngRegisteredCamp } from "../Pages/Dashboard/Organizer/MngRegisteredCamp";
+import { ParticipantRoute } from "../Providers/ParticipantRoute";
+import { Analytics } from "../Pages/Dashboard/Participant/Analytics";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +76,10 @@ const router = createBrowserRouter([
             path: 'mngRegCamp',
             element:<OrganizerRoute><MngRegisteredCamp></MngRegisteredCamp></OrganizerRoute>
           },
+          {
+            path: 'analytics',
+            element:<ParticipantRoute><Analytics></Analytics></ParticipantRoute>
+          }
 
 
         ]
