@@ -13,7 +13,7 @@ export const Aside = () => {
       {
         organizer && <div className='flex flex-col'>
           <NavLink
-            to={'organizerProfile'}
+            to={'profile'}
             className={({ isActive }) => isActive ? 'text-third font-extrabold p-2 text-right underline' : 'hover:text-third hover:underline p-2 font-bold text-right hover:duration-500 hover:bg-accent'} >Organizer's Profile</NavLink>
 
           <NavLink
@@ -37,11 +37,11 @@ export const Aside = () => {
             className={({ isActive }) => isActive ? 'text-third underline font-extrabold p-2 text-right' : 'hover:text-third hover:underline p-2 font-bold text-right hover:duration-500 hover:bg-accent'} >Analytics</NavLink>
 
           <NavLink
-            to={'participantProfile'}
+            to={'profile'}
             className={({ isActive }) => isActive ? 'text-third underline font-extrabold p-2 text-right' : 'hover:text-third hover:underline p-2 font-bold text-right hover:duration-500 hover:bg-accent'} >Participant Profile</NavLink>
 
           <NavLink
-            to={'regCamps'}
+            to={'regAndPay'}
             className={({ isActive }) => isActive ? 'text-third underline font-extrabold p-2 text-right' : 'hover:text-third hover:underline p-2 font-bold text-right hover:duration-500 hover:bg-accent'} >Registerd Camps</NavLink>
 
           <NavLink
