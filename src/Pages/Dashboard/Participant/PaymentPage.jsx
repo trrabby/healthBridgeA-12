@@ -37,9 +37,10 @@ export const PaymentPage = () => {
 
 
   return (
-    <div>
+    <div data-aos="fade-left" data-aos-duration="800">
       <SectionHead
-        title={'You Camp Details'}
+        title={'Your Payment Details'}
+        para={'Your Are Paying For...'}
       ></SectionHead>
       <div>
         <div className='mt-4 w-full'>
@@ -49,16 +50,17 @@ export const PaymentPage = () => {
               <h3 className="font-bold uppercase text-gray-900">
                 Camp Name: {title}
               </h3>
-              <h3 className="font-bold  text-gray-900 flex gap-2 items-center">
-                Camp Fees: {campFee} tk only
-              </h3>
-              <h3 className="font-bold  text-gray-900 flex gap-2 items-center">
+             <h3 className="font-bold  text-gray-900 flex gap-2 items-center">
                 Location: {loc}
               </h3>
               <h3 className="font-bold  text-gray-900 flex gap-2 items-center">
                 Health Care Professional: {healtCareProf}
               </h3>
               <hr className='mt-10' />
+              <h3 className="font-bold text-center flex gap-2 justify-center items-center text-accent">
+                Total Payable Amount: {campFee} tk only
+              </h3>
+              <hr/>
             </div>
 
             <div className='w-6/12 mx-auto'>

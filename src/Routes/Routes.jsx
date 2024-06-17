@@ -22,6 +22,8 @@ import { Analytics } from "../Pages/Dashboard/Participant/Analytics";
 import { RegCamps } from "../Pages/Dashboard/Participant/RegCamps";
 import { PaymentPage } from "../Pages/Dashboard/Participant/PaymentPage";
 import { RegAndPay } from "../Pages/Dashboard/Participant/RegAndPay";
+import { FeedbackPage } from "../Pages/Dashboard/Participant/FeedbackPage";
+import { TransactionHistory } from "../Pages/Dashboard/Participant/TransactionHistory";
 
 const router = createBrowserRouter([
   {
@@ -94,9 +96,13 @@ const router = createBrowserRouter([
               {
                 path: 'payPage/:id',
                 element: <ParticipantRoute><PaymentPage></PaymentPage></ParticipantRoute>
-              }
-            ]
-          }
+              },
+              ]
+          },
+          {
+            path: 'paymentHistory',
+            element: <ParticipantRoute><TransactionHistory></TransactionHistory></ParticipantRoute>
+          },
 
 
 

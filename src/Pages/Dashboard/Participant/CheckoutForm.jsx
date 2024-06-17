@@ -12,8 +12,8 @@ import { useAxiosSecure } from '../../../Hooks/useAxiosSecure'
 import { LoadingSpinner } from '../../../Components/LoadingSpinner'
 
 
-const CheckoutForm = ({bookingInfo, refetch }) => {
-    // console.log(bookingInfo)
+const CheckoutForm = ({ bookingInfo, refetch }) => {
+  // console.log(bookingInfo)
   const stripe = useStripe()
   const elements = useElements()
   const axiosSecure = useAxiosSecure()
@@ -69,7 +69,7 @@ const CheckoutForm = ({bookingInfo, refetch }) => {
       setProcessing(false)
       return
     } else {
-    //   console.log('[PaymentMethod]', paymentMethod)
+      //   console.log('[PaymentMethod]', paymentMethod)
       setCardError('')
     }
 
@@ -93,28 +93,28 @@ const CheckoutForm = ({bookingInfo, refetch }) => {
     }
 
     if (paymentIntent.status === 'succeeded') {
-    //   console.log(paymentIntent)
+      //   console.log(paymentIntent)
       // 1. Create payment info object
       const paymentInfo = {
         ...bookingInfo,
-        payStat:'Paid',
+        payStat: 'Paid',
         transactionId: paymentIntent.id,
         date: new Date(),
       }
-      delete(paymentInfo._id)
-    //   console.log(paymentInfo)
+      delete (paymentInfo._id)
+      //   console.log(paymentInfo)
 
       try {
         // 2. save payment info in paymentInfo collection (db)
         const { data } = await axiosSecure.post('/paymentInfo', paymentInfo)
         // console.log(data)
-        
+
         // 3. change camp payment status to paid in db
         await axiosSecure.put(`/regCamps_default/${bookingInfo._id}`, {
-            payStat: "Paid",
+          payStat: "Paid",
         }
-    
-    )
+
+        )
 
         // update ui
         toast.success('Payment Successfull')
@@ -153,7 +153,7 @@ const CheckoutForm = ({bookingInfo, refetch }) => {
           <button
             disabled={!stripe || !clientSecret || processing}
             type='submit'
-            className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+            className='text-accent font-bold p-1 px-3 rounded-lg hover:bg-accent duration-500 hover:text-white border-accent border'
           >
             {processing ? (
               <LoadingSpinner></LoadingSpinner>
@@ -161,13 +161,19 @@ const CheckoutForm = ({bookingInfo, refetch }) => {
               `Pay ${bookingInfo?.campFee}`
             )}
           </button>
+
           <button
-            onClick={()=>setProcessing(false)}
+            onClick={() => setProcessing(false)}
             type='button'
-            className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+            className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm text-red-900 hover:bg-red-500 hover:text-white font-bold duration-300'
           >
             Cancel
           </button>
+
+          <button className='text-accent font-bold p-1 px-3 rounded-lg hover:bg-accent duration-500 hover:text-white border-accent border' onClick={() => navigate(-1)}>
+            Back
+          </button>
+
         </div>
       </form>
       {cardError && <p className='text-red-600 ml-8'>{cardError}</p>}
