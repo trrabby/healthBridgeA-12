@@ -98,6 +98,7 @@ const CheckoutForm = ({ bookingInfo, refetch }) => {
       const paymentInfo = {
         ...bookingInfo,
         payStat: 'Paid',
+        keyAfterPayment: bookingInfo._id,
         transactionId: paymentIntent.id,
         date: new Date(),
       }

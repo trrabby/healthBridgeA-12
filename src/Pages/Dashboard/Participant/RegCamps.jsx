@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import { BiErrorCircle } from "react-icons/bi";
 import { handleDelete } from '../../../Components/utilities/handleDelete';
 import ReviewModal from '../../../Components/Modals/ReviewModal';
+import { LoadingSpinner } from '../../../Components/LoadingSpinner';
+import { LoadingSpinnerCircle } from '../../../Components/LoadingSpinnerCircle';
 
 export const RegCamps = () => {
     const [campModalOpen, setCampModalOpen] = useState(false);
@@ -28,6 +30,10 @@ export const RegCamps = () => {
         const { data } = await axiosSecure(`/myRegCamps/${user?.email}`);
         return data;
     };
+
+    if(isLoading){
+        return <LoadingSpinnerCircle></LoadingSpinnerCircle>
+    }
 
     const handleFeedback = (e, item) => {
         e.stopPropagation();

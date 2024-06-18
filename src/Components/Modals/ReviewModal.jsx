@@ -16,7 +16,7 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
     const [rated, setRated] = useState(4);
     const { user } = useContext(ContextApi)
     const axiosSecure = useAxiosSecure()
-   
+
 
     const { title, loc, healtCareProf } = camp
 
@@ -24,7 +24,7 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
     const onSubmit = async (modalData) => {
-        
+
         const infoWithAddlModalData = {
             "title": title,
             "loc": loc,
@@ -33,7 +33,7 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
             "feedbackGiverEmail": user.email,
             "feedbackGiverPhoto": user.photoURL,
             "regTime": new Date(),
-            "rating" : rated,
+            "rating": rated,
             ...modalData,
         }
         // console.log(infoWithAddlModalData)
@@ -43,7 +43,10 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
                 Swal.fire({
                     position: "top-center",
                     icon: "success",
-                    title: `Thanks For Your Feedback`,
+                    title: `Thanks For Your Feedback.`,
+                    text: "Your feedback is highly valued and carefully considered for our continuous improvement and excellence.",
+
+
                     showConfirmButton: true,
                 })
                 reset()
@@ -59,7 +62,7 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
             <Dialog
                 as='div'
                 className='relative z-50'
-                onClose={() => {setIsOpen(false); reset()}}
+                onClose={() => { setIsOpen(false); reset() }}
             >
                 <Transition.Child
                     as={Fragment}
@@ -116,7 +119,7 @@ const ReviewModal = ({ setIsOpen, isOpen, camp, refetch }) => {
                                                 Cancel
                                             </button>
 
-                                            </div>
+                                        </div>
 
                                     </form>
                                 </div>

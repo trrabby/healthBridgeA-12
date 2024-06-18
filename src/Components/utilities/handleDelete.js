@@ -4,7 +4,7 @@ import Swal from "sweetalert2"
 
 const axiosCommon = useAxiosCommon()
 
-export const handleDelete = async (route, refetch) => {
+export const handleDelete = async (route, refetch, setLoading) => {
 
     const shouldDelete = await Swal.fire({
         title: "Are you sure?",
@@ -18,7 +18,7 @@ export const handleDelete = async (route, refetch) => {
     // console.log(shouldDelete)
 
     if (shouldDelete.isConfirmed) {
-
+        setLoading(true)
         const { data } = await axiosCommon.delete(route)
         if (data.deletedCount > 0) {
             refetch()

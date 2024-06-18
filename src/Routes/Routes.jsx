@@ -24,6 +24,7 @@ import { PaymentPage } from "../Pages/Dashboard/Participant/PaymentPage";
 import { RegAndPay } from "../Pages/Dashboard/Participant/RegAndPay";
 import { FeedbackPage } from "../Pages/Dashboard/Participant/FeedbackPage";
 import { TransactionHistory } from "../Pages/Dashboard/Participant/TransactionHistory";
+import { DashboardHome } from "../Pages/Dashboard/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
         children: [
+
+          {
+            index: true,
+            element:<DashboardHome></DashboardHome>
+          },
 
           {
             path: 'profile',

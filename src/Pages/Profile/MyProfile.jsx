@@ -50,15 +50,16 @@ export const MyProfile = () => {
     };
   }
 
-
+  // bg-[url(https://i.ibb.co/L9LCF3p/kenrick-mills-rfe-PWka7-VPU-unsplash-1.jpg)] 
   return (
     <div>
-      <div className='bg-[url(https://i.ibb.co/L9LCF3p/kenrick-mills-rfe-PWka7-VPU-unsplash-1.jpg)] min-h-screen bg-cover bg-center flex flex-col items-center justify-center rounded-lg'>
-        <div className='flex flex-col text-white gap-10 items-center p-5 py-10 bg-[#15514f59] w-8/12 justify-center mt-4 rounded-xl'>
+      <div className="bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20%20width%3D%2729%27%20height%3D%2729%27%20viewBox%3D%270%200%20200%20200%27%3E%3Crect%20fill%3D%27%238ECAE6%27%20width%3D%27200%27%20height%3D%27200%27%2F%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27a%27%20gradientUnits%3D%27userSpaceOnUse%27%20x1%3D%27100%27%20y1%3D%2733%27%20x2%3D%27100%27%20y2%3D%27-3%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27000%27%20stop-opacity%3D%270%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27000%27%20stop-opacity%3D%271%27%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%27b%27%20gradientUnits%3D%27userSpaceOnUse%27%20x1%3D%27100%27%20y1%3D%27135%27%20x2%3D%27100%27%20y2%3D%2797%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27000%27%20stop-opacity%3D%270%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27000%27%20stop-opacity%3D%271%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20%20fill%3D%27%236eaac5%27%20fill-opacity%3D%270.5%27%3E%3Crect%20x%3D%27100%27%20%20width%3D%27100%27%20height%3D%27100%27%2F%3E%3Crect%20y%3D%27100%27%20%20width%3D%27100%27%20height%3D%27100%27%2F%3E%3C%2Fg%3E%3Cg%20fill-opacity%3D%270.5%27%3E%3Cpolygon%20fill%3D%27url(%23a)%27%20points%3D%27100%2030%200%200%20200%200%27%2F%3E%3Cpolygon%20fill%3D%27url(%23b)%27%20points%3D%27100%20100%200%20130%200%20100%20200%20100%20200%20130%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')] min-h-[calc(100vh-100px)] bg-center flex flex-col items-center justify-center rounded-lg">
+        
+        <div className='flex flex-col text-white gap-10 items-center p-5 py-5 bg-[#14535191] w-8/12 justify-center mt-4 rounded-xl'>
           <div className='flex items-center justify-center gap-5'>
             <img className='w-32 h-32 rounded-full' src={user?.photoURL} alt="" />
             <div className='text-2xl'>
-              <p className='flex gap-3 items-center font-extrabold'><FaUserAlt className='text-primary' />
+              <p className='flex gap-3 items-center font-extrabold text-2xl text-fourth drop-shadow-2xl shadow-white'><FaUserAlt className='text-primary' />
                 {user?.displayName}</p>
               <p className='flex gap-3 items-center'><MdEmail className='text-primary' /> {user?.email}</p>
               <p className='flex gap-3 items-center'> <TbActivityHeartbeat className='text-primary' />Role: <span className='capitalize  '>{userRole}</span> </p>
