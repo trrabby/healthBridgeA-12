@@ -13,25 +13,37 @@ import { handleDelete } from '../../../Components/utilities/handleDelete';
 import ReviewModal from '../../../Components/Modals/ReviewModal';
 import { LoadingSpinner } from '../../../Components/LoadingSpinner';
 import { LoadingSpinnerCircle } from '../../../Components/LoadingSpinnerCircle';
+import { useMyRegCampCount } from '../../../Hooks/useMyRegCampCount';
 
 export const RegCamps = () => {
+
+    const { user, setLoading, loading } = useContext(ContextApi);
+    const axiosSecure = useAxiosSecure();
     const [campModalOpen, setCampModalOpen] = useState(false);
     const [selectedCamp, setSelectedCamp] = useState(null);
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const { user } = useContext(ContextApi);
-    const axiosSecure = useAxiosSecure();
+    const { myRegCampsCount } = useMyRegCampCount()
+    // console.log(myRegCampsCount)
+    const itemPerPage = 10;
+    const numberOfPage = Math.ceil(myRegCampsCount / itemPerPage)
+    // console.log(numberOfPage)
+    const pages = [...Array(numberOfPage).keys()];
+    // console.log(pages)
+
 
     const { data: myCamps = [], isLoading, isError, error, refetch } = useQuery({
-        queryKey: ['regCampsData'],
+        queryKey: ['regCampsData', currentPage],
         queryFn: () => myRegCampsData(),
     });
+    // console.log(myCamps)
 
     const myRegCampsData = async () => {
-        const { data } = await axiosSecure(`/myRegCamps/${user?.email}`);
+        const { data } = await axiosSecure(`/myRegCamps/${user?.email}?page=${currentPage}&&size=${itemPerPage}`);
         return data;
     };
 
-    if(isLoading){
+    if (isLoading || loading) {
         return <LoadingSpinnerCircle></LoadingSpinnerCircle>
     }
 
@@ -41,11 +53,25 @@ export const RegCamps = () => {
         setCampModalOpen(true);
     };
 
+
+    // console.log(pages)
+    const handlePrev = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const handleNext = () => {
+        if (currentPage < numberOfPage - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
     return (
         <div>
             <SectionHead title={"All Registered Camps"}></SectionHead>
-            <div>
-                <table className="table-sm w-full text-center">
+            <div className='flex flex-col justify-between gap-4 overflow-x-auto'>
+                <table className="table-sm w-full text-center overflow-x-auto">
                     <thead className='underline text-center'>
                         <tr>
                             <th>Camp Name</th>
@@ -60,7 +86,7 @@ export const RegCamps = () => {
                     <tbody>
                         {myCamps &&
                             myCamps.map((item, i) => (
-                                <tr key={item._id} data-aos="fade-left" data-aos-duration="800" className='hover:bg-[#dab9b93b] border-b text-center'>
+                                <tr key={item._id} className='hover:bg-[#dab9b93b] border-b text-center'>
                                     <td>{item.title}</td>
                                     <td className='flex gap-2 p-1 items-center justify-center'><HiOutlineCurrencyBangladeshi />{item.campFee}</td>
                                     <th>{item.nameOfParticipant}</th>
@@ -71,7 +97,7 @@ export const RegCamps = () => {
                                     <td>
                                         <button
                                             disabled={item?.payStat === "Paid"}
-                                            onClick={() => handleDelete((`/regCamps/${item._id}`), refetch)}
+                                            onClick={() => handleDelete((`/regCamps/${item._id}`), refetch, setLoading)}
                                             className={`border p-1 rounded-lg duration-700 ${item?.payStat === "Paid" ? "hover:bg-none text-black cursor-not-allowed" : "hover:bg-red-600 hover:text-white"}`}>
                                             {item?.payStat === "Paid" ? <BiErrorCircle /> : <RxCross2 />}
                                         </button>
@@ -99,6 +125,21 @@ export const RegCamps = () => {
                         }
                     </tbody>
                 </table>
+                <div className='text-center bg-third backdrop-blur-0 p-2 text-white flex gap-2 justify-center items-center' >
+                    <button
+                        onClick={handlePrev} className='bg-white text-black hover:bg-fourth duration-500 mr-3 px-3 rounded-full'>Prev</button>
+                    {
+                        pages && pages.map((page, i) =>
+                            <button
+                                key={i}
+                                onClick={() => setCurrentPage(page)}
+                                className={`bg-white text-black hover:bg-fourth duration-500 mr-3 px-2 rounded-full ${currentPage === page && 'bg-fourth text-white'}`}
+                            >{page + 1}</button>)
+                    }
+                    <button
+                        onClick={handleNext}
+                        className='bg-white text-black hover:bg-fourth duration-500 mr-3 px-3 rounded-full'>Next</button>
+                </div>
             </div>
             {selectedCamp && (
                 <ReviewModal

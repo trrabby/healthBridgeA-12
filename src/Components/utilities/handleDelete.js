@@ -21,11 +21,12 @@ export const handleDelete = async (route, refetch, setLoading) => {
         setLoading(true)
         const { data } = await axiosCommon.delete(route)
         if (data.deletedCount > 0) {
+            setLoading(false)
             refetch()
             toast.success('Deleted Successfully')
             Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Camp has been deleted.",
                 icon: "success"
             });
 

@@ -15,7 +15,6 @@ export const AvailableCamp = () => {
 
   const { camps, isLoading, refetch } = useAllCamps();
 
-
   const [campsData, setCampsData] = useState([])
   const [filter, setFilter] = useState(null)
   const [toggle, setToggle] = useState(false)
@@ -78,6 +77,7 @@ export const AvailableCamp = () => {
   const handleToggle = () => {
     setToggle(!toggle)
   }
+
   return (
     <div>
       <SectionHead
@@ -94,7 +94,6 @@ export const AvailableCamp = () => {
           <option value="Most_Registered">Most Registered</option>
           <option value="Camp_Fees">Camp Fees</option>
           <option value="Alphabetical_Order">Alphabetical Order</option>
-
         </select>
 
         <Button onClick={handleToggle} className="bg-primary p-2 rounded-xl font-bold hover:scale-105 duration-500 hover:bg-third hover:text-white">
