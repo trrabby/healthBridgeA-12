@@ -9,11 +9,12 @@ import { useAxiosCommon } from '../../Hooks/useAxiosCommon';
 import toast from 'react-hot-toast';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { IoGrid } from "react-icons/io5";
+import { useQuery } from '@tanstack/react-query';
 
 
 export const AvailableCamp = () => {
 
-  const { camps, isLoading, refetch } = useAllCamps();
+  // const { camps, isLoading, refetch } = useAllCamps();
 
   const [campsData, setCampsData] = useState([])
   const [filter, setFilter] = useState(null)
@@ -21,9 +22,18 @@ export const AvailableCamp = () => {
 
   // console.log(camps, campsData)
 
-  useEffect(() => {
-    setCampsData(camps)
-  }, [camps])
+  const { data: camps = [], isLoading, isError, error, refetch } = useQuery({
+    queryKey: ['campsDat'],
+    queryFn: () => campsDat(),
+  })
+
+  const campsDat = async () => {
+    const { data } = await axiosCommon('/camps')
+    return setCampsData(data)  }
+
+  // useEffect(() => {
+  //   setCampsData(camps)
+  // }, [camps, isLoading])
 
   const axiosCommon = useAxiosCommon()
   // console.log(isLoading)
@@ -107,7 +117,10 @@ export const AvailableCamp = () => {
       <div className={`grid grid-flow-row grid-cols-1 ${toggle ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} justify-between gap-5 p-0 mb-10 lg:w-full w-10/12 mx-auto mt-5 `}>
         {
           filter ? filter.map(camp => <Camp key={camp._id} camp={camp} refetch={refetch}></Camp>) :
-            campsData?.map(camp => <Camp key={camp._id} camp={camp} refetch={refetch}></Camp>)
+
+
+            campsData ? campsData.map(camp => <Camp key={camp._id} camp={camp} refetch={refetch}></Camp>) :
+              <LoadingSpinnerCircle></LoadingSpinnerCircle>
         }
       </div>
     </div>

@@ -21,6 +21,10 @@ export const ManageCamp = () => {
   const { campsCount } = useAllCampsCount()
   // console.log(campsCount)
 
+  if(loading || !campsCount){
+    return <LoadingSpinnerCircle></LoadingSpinnerCircle>
+  }
+
   const [currentPage, setCurrentPage] = useState(0);
   // console.log(currentPage)
   const itemPerPage = 10;
@@ -42,9 +46,10 @@ export const ManageCamp = () => {
     return data
   }
 
-  if(loading || isLoading){
+  if(loading || isLoading || !campsCount){
     return <LoadingSpinnerCircle></LoadingSpinnerCircle>
   }
+  
   const deleteHandler = async (idData) => {
     try {
       await handleDelete(idData, refetch, setLoading)
