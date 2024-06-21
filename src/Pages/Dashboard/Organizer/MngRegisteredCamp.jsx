@@ -126,8 +126,8 @@ export const MngRegisteredCamp = () => {
         axiosSecure.put(`/paymentInfo_up/${id}`, { payConStat: "Confirmed" })
       ]);
 
-      console.log(payCon1);
-      console.log(payCon2);
+      // console.log(payCon1);
+      // console.log(payCon2);
       toast.success("The camp has been confirmed")
       // Refetch data to reflect changes
       refetch();
@@ -200,7 +200,7 @@ export const MngRegisteredCamp = () => {
                 <button
                   key={i}
                   onClick={() => setCurrentPage(page)}
-                  className={`bg-white text-black hover:bg-fourth duration-500 mr-3 px-2 rounded-full ${currentPage === page && 'bg-fourth text-white'}`}
+                  className={`bg-white text-black hover:bg-fourth duration-500 mr-3 px-2 rounded-full ${currentPage === page && 'bg-yellow-800 text-white'}`}
                 >{page + 1}</button>)
             }
             <button

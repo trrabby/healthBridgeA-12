@@ -126,7 +126,7 @@ export const ContextProvider = ({ children }) => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         })
-        console.log(shouldDelete)
+        // console.log(shouldDelete)
 
         if (shouldDelete.isConfirmed) {
 
@@ -140,7 +140,7 @@ export const ContextProvider = ({ children }) => {
                     icon: "success"
                 });
             }
-            console.log(data)
+            // console.log(data)
         }
 
     }
