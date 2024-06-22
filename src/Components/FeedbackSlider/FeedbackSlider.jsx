@@ -27,9 +27,9 @@ export default function FeedbackSlider({ feedback }) {
                                 <div className='w-20 h-20 flex justify-center items-center border'>
                                     <img className='content-center' src={feed.feedbackGiverPhoto} alt="No Photo Aval" />
                                 </div>
-                                <h1>{feed.feedbackGiverName}</h1><br />
+                                <h1 className='md:text-base text-sm'>{feed.feedbackGiverName}</h1><br />
                                 <Rating value={feed.rating} readonly />
-                                <h1>{feed.title}</h1>
+                                <h1 className='md:text-base text-sm'>{feed.title}</h1>
                                 <h1 className='text-sm'>Experience: {feed.ratingText}</h1>
                             </div>
                         </SwiperSlide>)

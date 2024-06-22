@@ -59,34 +59,34 @@ export const Home = () => {
           title={"Meet Health Bridge Professionals"}
           para={'Meet our team of passionate professionals committed to exceptional camp experiences.'}
         ></SectionHead>
-        <div className='flex flex-col justify-center items-center border rounded-3xl w-6/12 mx-auto shadow-lg hover:shadow-accent shadow-primary duration-300 p-5 px-7'>
+        <div className='flex flex-col justify-center items-center border rounded-3xl lg:w-6/12 w-11/12 mx-auto shadow-lg hover:shadow-accent shadow-primary duration-300 p-5 px-7'>
           <div className='w-24 h-24'>
             <img className='content-center rounded-xl' src={'https://i.ibb.co/r77xgCH/Whats-App-Image-2024-05-15-at-15-43-56.jpg'} alt="No Photo Aval" />
           </div><br /><br />
-          <h1 className='text-xl font-bold'>MD TOWFIQUR RAHMAN</h1>
+          <h1 className='lg:text-xl font-bold'>MD TOWFIQUR RAHMAN</h1>
           <h1 className='font-bold'>Head Of Team</h1>
         </div>
-        <div className='grid grid-flow-col grid-cols-3'>
+        <div className='grid lg:grid-flow-col lg:grid-cols-3 grid-flow-row'>
           <div className='flex flex-col justify-center items-center border rounded-3xl mx-auto shadow-lg hover:shadow-accent shadow-primary duration-300 p-5 px-7 w-10/12  '>
             <div className='w-20 h-20'>
               <img className='content-center rounded-xl' src={'https://i.ibb.co/xGRKzjq/1668674433825.jpg'} alt="No Photo Aval" />
             </div><br />
-            <h1 className='text-xl font-bold'>KHALEKUR RAHMAN</h1>
+            <h1 className='lg:text-xl font-bold'>KHALEKUR RAHMAN</h1>
             <h1 className='font-bold'>Head Of Operation</h1>
           </div>
           <div className='flex flex-col justify-center items-center border rounded-3xl mx-auto shadow-lg hover:shadow-accent shadow-primary duration-300 p-5 px-7  w-10/12'>
             <div className='w-20 h-20'>
               <img className='content-center rounded-xl' src={'https://i.ibb.co/X7c6bVT/fahim-ahmed-256x256.jpg'} alt="No Photo Aval" />
             </div><br />
-            <h1 className='text-xl font-bold'>TASFIQUR BIN ZAYED</h1>
+            <h1 className='lg:text-xl font-bold'>TASFIQUR BIN ZAYED</h1>
             <h1 className='font-bold'>Head Of Talent Accuisition</h1>
           </div>
           <div className='flex flex-col justify-center items-center border rounded-3xl mx-auto shadow-lg hover:shadow-accent shadow-primary duration-300 p-5 px-7  w-10/12'>
             <div className='w-20 h-20'>
               <img className='content-center rounded-xl' src={'https://i.ibb.co/2PFSLpw/1516563317575.jpg'} alt="No Photo Aval" />
             </div><br />
-            <h1 className='text-xl font-bold'>RICHARD FAME</h1>
-            <h1 className='font-bold'>Head Of Foreign Affiers</h1>
+            <h1 className='lg:text-xl font-bold'>RICHARD FAME</h1>
+            <h1 className='font-bold'>Head Of Foreign Affairs</h1>
           </div>
 
         </div>

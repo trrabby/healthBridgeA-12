@@ -219,12 +219,13 @@ const navListItems = [
 
 ];
 
-function NavList() {
+function NavList({setIsNavOpen}) {
 
   return (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center text-black">
       {navListItems.map(({ label, icon, address }, key) => (
         <NavLink
+          onClick={()=>setIsNavOpen(false)}
           to={address}
           key={label}
           className={({ isActive }) => isActive ? 'text-fourth font-extrabold p-2' : 'hover:text-fourth p-2 font-extrabold'}
@@ -307,7 +308,7 @@ export function ComplexNavbar() {
       </div>
       {/* sm screen navlist */}
       <Collapse open={isNavOpen} className="overflow-scroll">
-        <NavList />
+        <NavList setIsNavOpen={setIsNavOpen} />
       </Collapse>
     </Navbar>
   );
