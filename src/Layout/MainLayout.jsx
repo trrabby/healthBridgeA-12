@@ -16,7 +16,7 @@ export const MainLayout = () => {
     <div className='container mx-auto'>
       <ComplexNavbar></ComplexNavbar>
       <Outlet></Outlet>
-      {window.location.pathname !== '/dashboard' || 'profile' && <Footer></Footer>}
+      {window.location.pathname == '/' && <Footer></Footer>}
 
     </div>
   )
