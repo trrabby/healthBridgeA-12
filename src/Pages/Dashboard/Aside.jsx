@@ -12,7 +12,7 @@ export const Aside = () => {
 
 
   return (
-    <div className={`bg-accent w-64 h-[calc(100vh-100px)] text-base text-white font-bold py-2 rounded-lg flex flex-col md:sticky top-[90px] md:translate-x-0 absolute md:mt-0 mt-[-5px] duration-500 z-50 ${isAsideOpen? 
+    <div className={`bg-accent w-64 h-[calc(100vh-100px)] text-base text-white font-bold py-2 rounded-lg flex flex-col md:sticky top-[90px] md:translate-x-0 absolute md:mt-0 mt-[-5px] duration-500 z-40 ${isAsideOpen? 
       "translate-x-0": "translate-x-[-300px]"
     }`}>
 

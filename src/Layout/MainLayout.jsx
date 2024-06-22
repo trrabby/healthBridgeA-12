@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComplexNavbar } from '../Components/ComplexNavbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
 /* Animate css and aos imports */
 import AOS from 'aos';
@@ -10,11 +10,14 @@ import 'animate.css';
 import { Footer } from '../Pages/Footer';
 
 export const MainLayout = () => {
+  const location = useLocation()
+
   return (
     <div className='container mx-auto'>
-        <ComplexNavbar></ComplexNavbar>
-        <Outlet></Outlet>
-        <Footer></Footer>
+      <ComplexNavbar></ComplexNavbar>
+      <Outlet></Outlet>
+      {window.location.pathname !== '/dashboard' || 'profile' && <Footer></Footer>}
+
     </div>
   )
 }
