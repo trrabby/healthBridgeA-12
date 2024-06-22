@@ -63,8 +63,8 @@ export const TransactionHistory = () => {
                 para={`find your all transaction history here.`}
             ></SectionHead>
             <div>
-                <div>
-                    <table className="table-xs w-full text-center text-sm">
+                <div className='overflow-x-auto'>
+                    <table className="table-xs w-full text-center text-sm ">
                         <thead className='underline text-center'>
                             <tr>
 

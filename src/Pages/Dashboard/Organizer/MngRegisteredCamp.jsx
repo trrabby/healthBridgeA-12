@@ -176,7 +176,7 @@ export const MngRegisteredCamp = () => {
         title={'Manage Registered Camps'}
       ></SectionHead>
       <div>
-        <div>
+        <div className='overflow-x-auto'>
           <table className="table-sm w-full text-center">
             {/* head */}
             <thead className='underline text-center' >

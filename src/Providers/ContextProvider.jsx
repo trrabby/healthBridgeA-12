@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(null)
     const [user, setUser] = useState(null);
-
+    const [isAsideOpen, setIsAsideOpen] = useState(false)
     // console.log(user)
 
 
@@ -160,7 +160,9 @@ export const ContextProvider = ({ children }) => {
         updateUserInfo,
         setErr,
         err,
-        handleDelete
+        handleDelete,
+        isAsideOpen,
+        setIsAsideOpen,
     }
 
     return (
