@@ -42,7 +42,7 @@ export const MngRegisteredCamp = () => {
     return data
   }
 
-  if(loading || isLoading){
+  if (loading || isLoading) {
     return <LoadingSpinnerCircle></LoadingSpinnerCircle>
   }
 
@@ -58,11 +58,13 @@ export const MngRegisteredCamp = () => {
     }
   }
 
-  const deleteHandler = async (idData) => {
+  const deleteHandler = async (idData, idForRejection) => {
 
     try {
       await handleDelete(idData, refetch, setLoading)
+      await rejectionHandler(idForRejection)
       setLoading(false)
+
     }
     catch (err) {
       console.log(err)
@@ -130,6 +132,7 @@ export const MngRegisteredCamp = () => {
       // console.log(payCon2);
       toast.success("The camp has been confirmed")
       // Refetch data to reflect changes
+      
       refetch();
     } catch (err) {
       console.log(err);
@@ -138,6 +141,32 @@ export const MngRegisteredCamp = () => {
       setLoading(false);
     }
   };
+
+  const rejectionHandler = async (id) => {
+
+    try {
+
+      setLoading(true);
+
+      await axiosSecure.put(`/paymentInfo_up/${id}`, { payConStat: "Rejected" })
+      // Perform both PUT requests concurrently
+      // const [payCon1, payCon2] = await Promise.all([
+      //   axiosSecure.put(`/regCamps_default/${id}`, { payConStat: "Rejected" }),
+      //   axiosSecure.put(`/paymentInfo_up/${id}`, { payConStat: "Rejected" })
+      // ]);
+      
+      // console.log(payCon1);
+      // console.log(payCon2);
+      // toast.success("The camp has been confirmed")
+      // Refetch data to reflect changes
+      // refetch();
+    } catch (err) {
+      console.log(err);
+      toast.error("An error occurred while updating the payment status.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
 
 
@@ -179,7 +208,12 @@ export const MngRegisteredCamp = () => {
                   <td>
                     {item?.payStat === "Paid" && item?.payConStat === "Confirmed" ?
                       <button className='p-1 disabled cursor-not-allowed'><TiTick className='text-green-600' /></button> :
-                      <button onClick={() => deleteHandler(`/regCamps/${item._id}`)} className='border p-1 hover:bg-red-600 hover:text-white rounded-lg duration-700'><RxCross2 /></button>
+                      <button onClick={() => {
+                        deleteHandler(`/regCamps/${item._id}`, item._id)
+                         
+                      }}
+
+                        className='border p-1 hover:bg-red-600 hover:text-white rounded-lg duration-700'><RxCross2 /></button>
                     }
                   </td>
 

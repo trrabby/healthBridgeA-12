@@ -112,7 +112,7 @@ export const TransactionHistory = () => {
                                 <button
                                     key={i}
                                     onClick={() => setCurrentPage(page)}
-                                    className={`bg-white text-black hover:bg-fourth duration-500 mr-3 px-2 rounded-full ${currentPage === page && 'bg-fourth text-white'}`}
+                                    className={`bg-white text-black hover:bg-fourth duration-500 mr-3 px-2 rounded-full ${currentPage === page && 'bg-yellow-800 text-white'}`}
                                 >{page + 1}</button>)
                         }
                         <button
